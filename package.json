@@ -1,0 +1,35 @@
+{
+  "name": "plotly-export",
+  "version": "0.0.0",
+  "description": "Plotly.js Node.js svg export",
+  "repository": {
+    "url": "https://www.w.com",
+    "type": "git"
+  },
+  "main": "test.js",
+  "scripts": {
+    "start": "node test.js"
+  },
+  "keywords": [
+    "Plotly.js",
+    "image",
+    "export",
+    "offline",
+    "Node.js",
+    "jsdom"
+  ],
+  "author": "NFP",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "@mhkeller/plot": "^3.1.0",
+    "jsdom": "^22.1.0",
+    "puppeteer": "^21.5.1",
+    "uuid": "^9.0.1"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "devDependencies": {
+    "fs": "^0.0.1-security"
+  }
+}

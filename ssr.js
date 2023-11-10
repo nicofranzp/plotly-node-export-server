@@ -44,10 +44,12 @@ render = async function (jsonData, filename, width, height) {
 
   const virtual_console = new jsdom.VirtualConsole();
   virtual_console.sendTo(console);
-  const win = new jsdom.JSDOM("", {
+  const win = new jsdom.JSDOM(`<html><head></head><body></body></html>`, {
     runScripts: "dangerously",
+    pretendToBeVisual: true,
     virtual_console,
   }).window;
+  // mock a few things that JSDOM doesn't support out-of-the-box
   win.HTMLCanvasElement.prototype.getContext = function () {
     return null;
   };

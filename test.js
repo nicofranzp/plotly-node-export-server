@@ -1,4 +1,6 @@
 const { render } = require("./ssr");
+// const { plot } = require("@mhkeller/plot");
+
 // run the server
 var test1 = {
   data: [
@@ -80,6 +82,6 @@ var test1 = {
     margin: { l: 40, r: 20, b: 60, t: 20 },
   },
 };
-// test1.layout.width = 400;
-// test1.layout.height = 400;
+test1.layout.width = 400;
+test1.layout.height = 400;
 render(JSON.stringify(test1), "test.svg").then((a) => console.log(a));
