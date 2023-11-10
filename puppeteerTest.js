@@ -3,7 +3,7 @@ const puppeteer = require("puppeteer");
 var exp = function (plotlyData, layout) {
   return new Promise(async (resolve, reject) => {
     try {
-      const browser = await puppeteer.launch();
+      const browser = await puppeteer.launch({ headless: "new" });
       const page = await browser.newPage();
       await page.setContent(`<html>
       <body>
@@ -14,7 +14,7 @@ var exp = function (plotlyData, layout) {
         url: "https://code.jquery.com/jquery-3.2.1.min.js",
       });
       await page.addScriptTag({
-        url: "https://cdn.plot.ly/plotly-1.58.4.min.js",
+        url: "https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.27.1/plotly.min.js",
       });
 
       await page.exposeFunction("plotlyData", plotlyData);
@@ -24,19 +24,17 @@ var exp = function (plotlyData, layout) {
         function (plotlyData, layout) {
           // @ts-ignore
           const Plotly = window.Plotly;
-          Plotly.newPlot("chart", plotlyData, layout);
-          return Plotly.toImage("chart", {
-            format: "svg",
-            width: layout.width ? layout.width : 800,
-            height: layout.height ? layout.height : 600,
-          });
+          return Plotly.toImage(
+            { data: plotlyData, layout: layout },
+            { format: "svg", imageDataOnly: true }
+          );
         },
         plotlyData,
         layout
       );
 
       await browser.close();
-      return resolve(image.replace(/^data:image\/(png|jpg);base64,/, ""));
+      return resolve(image);
     } catch (e) {
       console.log("🚀 ~ file: index.js ~ line 13 ~ returnnewPromise ~ e", e);
       return reject(e);

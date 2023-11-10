@@ -83,12 +83,8 @@ function createHeatmap() {
     };
 
     let imageBuffer = await exp(data, layout);
-    await console.log(imageBuffer);
-    await fs.writeFile(`barchart.svg`, imageBuffer, "base64");
 
-    // For my use case I upload it to s3
-    let image = await uploadImageToS3(Buffer.from(imageBuffer, "base64"));
-    return resolve({ imageUrl: image["Location"] });
+    await fs.writeFile(`barchart.svg`, imageBuffer);
   });
 }
 
