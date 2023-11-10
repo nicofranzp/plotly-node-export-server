@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+const fs = require("fs-extra");
 
 var exp = function (plotlyData, layout) {
   return new Promise(async (resolve, reject) => {
@@ -32,7 +33,6 @@ var exp = function (plotlyData, layout) {
         plotlyData,
         layout
       );
-
       await browser.close();
       return resolve(image);
     } catch (e) {
@@ -42,6 +42,13 @@ var exp = function (plotlyData, layout) {
   });
 };
 
+function export2SVG(data, layout, config, plotname) {
+  return new Promise(async (resolve, reject) => {
+    let imageBuffer = await exp(data, layout);
+    await fs.writeFile(plotname + ".svg", imageBuffer);
+  });
+}
+
 module.exports = {
-  exp,
+  export2SVG,
 };
