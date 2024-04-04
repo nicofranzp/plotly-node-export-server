@@ -3,8 +3,8 @@ var config = {
   toImageButtonOptions: {
     format: "png",
     filename: "grafico_IEF",
-    height: 500,
-    width: 700,
+    height: 200,
+    width: 1200,
     scale: 2,
   },
   modeBarButtonsToRemove: [
@@ -89,4 +89,4 @@ var layout = {
   paper_bgcolor: "rgb(255, 255, 255)",
   margin: { l: 10, r: 10, b: 20, t: 10 },
 };
-export2SVG(data, layout, config, "gName");
+export2SVG(data, layout, config, "gName2");

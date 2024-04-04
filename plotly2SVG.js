@@ -26,11 +26,12 @@ var exp = function (plotlyData, layout, config) {
           const Plotly = window.Plotly;
           return Plotly.toImage(
             { data: plotlyData, layout: layout, config: config },
-            { format: "svg", imageDataOnly: true }
+            { format: "svg", imageDataOnly: true, height: 400, width: 400 }
           );
         },
         plotlyData,
-        layout
+        layout,
+        config
       );
       await browser.close();
       return resolve(image);
